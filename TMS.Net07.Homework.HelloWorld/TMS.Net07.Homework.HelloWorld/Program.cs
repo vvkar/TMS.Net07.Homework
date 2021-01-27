@@ -12,7 +12,15 @@ namespace TMS.Net07.Homework.HelloWorld
         {
             Console.WriteLine("Введите число:") ;
             string input = Console.ReadLine();
-            int number = int.Parse(input);
+            bool check = int.TryParse(input, out int number);
+
+            while (check == false)
+            {
+                Console.WriteLine($"Ошибка ввода, '{input}' не является числом. Повторите ввод:");
+                input = Console.ReadLine();
+                check = int.TryParse(input, out number);
+            }
+
             Console.WriteLine($"Введенное число - {number}");
 
             Console.ReadKey();
