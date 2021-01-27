@@ -10,7 +10,7 @@ namespace TMS.Net07.Homework.HelloWorld
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Введите число:") ;
+            Console.WriteLine("Введите число:");
             string input = Console.ReadLine();
             bool check = int.TryParse(input, out int number);
 
@@ -23,7 +23,31 @@ namespace TMS.Net07.Homework.HelloWorld
 
             Console.WriteLine($"Введенное число - {number}");
 
-            Console.ReadKey();
+            Console.WriteLine("Для выхода из программы введите цифру 0:");
+            input = Console.ReadLine();
+            check = int.TryParse(input, out number);
+
+            while (check == false | number !=0)
+            {
+                if (check == false)
+                {
+                    Console.WriteLine("Введенная запись не является числовой. Для выхода из программы введите цифру 0:");
+                    input = Console.ReadLine();
+                    check = int.TryParse(input, out number);
+                }
+                else if (check == true && number!=0)
+                {
+                    Console.WriteLine("Вы ввели неверную цифру. Для выхода из программы введите цифру 0:");
+                    input = Console.ReadLine();
+                    check = int.TryParse(input, out number);
+                }
+                else if (check == true && number == 0)
+                {
+                    return;
+                }
+
+            }
+
         }
     }
 }
