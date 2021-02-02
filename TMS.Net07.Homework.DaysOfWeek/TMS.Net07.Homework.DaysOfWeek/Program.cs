@@ -12,48 +12,45 @@ namespace TMS.Net07.Homework.DaysOfWeek
         {            
             var date = Convert.ToDateTime(input);
 
+            Console.WriteLine();
             Console.WriteLine("Day of week mid lvl check: " + date.DayOfWeek);
             Console.WriteLine();
         }
+
         static void GetDayOfWeekHardLevel(string input)
         {
+            DaysOfWeek Day;
+            int[] DaysAmount = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+            int[] LeapYearDaysAmount = { 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
             string[] numbs = input.Split('.');
+
             int day = Convert.ToInt32(numbs[0]); 
             int month = Convert.ToInt32(numbs[1]);
             int year = Convert.ToInt32(numbs[2]) - 1;
 
             int days = year * 365 + year / 400 - year / 100 + year / 4;
+                        
+            bool isLeapСheck = (year + 1) % 400 == 0 || ((year + 1) % 4 == 0 && (year + 1) % 100 != 0);
 
-            bool check = false;
-            if ((year + 1) % 400 == 0 || ((year + 1) % 4 == 0 && (year + 1) % 100 != 0))
-                check = true;
-
-            for (int i = 1; i < month; i++)
+            for (int i = 0; i < month-1; i++)
             {
-                if (i <= 7)
+                if (isLeapСheck)
                 {
-                    if (i == 2 && check == true)
-                        days += 29;
-                    else if (i == 2 && check == false)
-                        days += 28;
-                    else if (i % 2 != 0)
-                        days += 31;
-                    else
-                        days += 30;
+                    days += LeapYearDaysAmount[i];
                 }
                 else
                 {
-                    if (i % 2 != 0)
-                        days += 30;
-                    else
-                        days += 31;
-                }
+                    days += DaysAmount[i];
+                }                
             }
             days += day;
-            DaysOfWeek Day = (DaysOfWeek)(days % 7);
+            Day = (DaysOfWeek)(days % 7);
+
             Console.WriteLine("Day of week hard lvl check: "+ Day);
             Console.WriteLine();
         }
+
         enum DaysOfWeek
         {
             Sunday,
@@ -64,6 +61,7 @@ namespace TMS.Net07.Homework.DaysOfWeek
             Friday,
             Saturday
         }
+
         static void Main(string[] args)
         {
            Console.Write("Please input date: ");
@@ -72,10 +70,14 @@ namespace TMS.Net07.Homework.DaysOfWeek
                 string input = Console.ReadLine();
 
                 if (input == "exit")
+                {
                     return;
+                }
 
                 GetDayOfWeekMiddleLevel(input);
+
                 GetDayOfWeekHardLevel(input);
+
                 Console.Write("Try another date or input 'exit' to close the program: ");
             }
             while (true);
