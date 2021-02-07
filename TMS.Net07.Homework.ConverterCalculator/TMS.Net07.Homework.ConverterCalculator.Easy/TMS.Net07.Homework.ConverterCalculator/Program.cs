@@ -45,7 +45,7 @@ namespace TMS.Net07.Homework.ConverterCalculator
             bool amountCheck;
 
             double amount;
-            double AmountAfterExchange;
+            double amountAfterExchange;
 
             do
             {
@@ -72,13 +72,13 @@ namespace TMS.Net07.Homework.ConverterCalculator
 
             if (sellCheck)
             {
-                AmountAfterExchange = amount * ((int)SellCourse / 10000.0);
+                amountAfterExchange = amount * ((int)SellCourse / 10000.0);
             }
             else
             {
-                AmountAfterExchange = amount * (10000.0/(int)BuyCourse);
+                amountAfterExchange = amount * (10000.0/(int)BuyCourse);
             }
-            Console.WriteLine($"{amountInput} {sourceCurrency} is equal to {AmountAfterExchange:0.####} {targetCurrency}");
+            Console.WriteLine($"{amountInput} {sourceCurrency} is equal to {amountAfterExchange:0.####} {targetCurrency}");
 
             Console.ReadKey();
         }

@@ -62,14 +62,14 @@ namespace TMS.Net07.Homework.ConverterCalculator.Hard
                     i++;
                 }
 
-                doCalculation(numbers, operators, out operationSuccess);
+                DoCalculation(numbers, operators, out operationSuccess);
             }
             while (!operationSuccess);
 
             Console.ReadKey();
         }
 
-        static void doCalculation(double[] x, string[] op, out bool check)
+        static void DoCalculation(double[] x, string[] op, out bool check)
         {
             check = true;
             switch (op[0])
@@ -84,9 +84,21 @@ namespace TMS.Net07.Homework.ConverterCalculator.Hard
                     Console.WriteLine($"Result: {x[0] * x[1]}");
                     break;
                 case "/":
+                    if (x[1]==0)
+                    {
+                        Console.WriteLine("Incorrect input, division by zero!");
+                        check = false;
+                        break;
+                    }
                     Console.WriteLine($"Result: {x[0] / x[1]}");
                     break;
                 case "%":
+                    if (x[1] == 0)
+                    {
+                        Console.WriteLine("Incorrect input, division by zero!");
+                        check = false;
+                        break;
+                    }
                     Console.WriteLine($"Result: {x[0] % x[1]}");
                     break;
                 case "sqr":
@@ -100,7 +112,7 @@ namespace TMS.Net07.Homework.ConverterCalculator.Hard
                     break;
                 default:
                     check = false;
-                    Console.WriteLine("Incorrect operation sighn input, try again!");
+                    Console.WriteLine("Incorrect operation sign input, try again!");
                     break;
             }
         }

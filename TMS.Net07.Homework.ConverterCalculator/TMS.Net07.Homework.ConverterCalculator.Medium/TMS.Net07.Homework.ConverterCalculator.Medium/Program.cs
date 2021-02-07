@@ -39,14 +39,14 @@ namespace TMS.Net07.Homework.ConverterCalculator.Medium
                 Console.Write("Input the operation you wish to execute (e.g. +, -, *, /, %): ");
                 string operation = Console.ReadLine();
 
-                doCalculation(firstNumber, secondNumber, operation, out operationSuccess);
+                DoCalculation(firstNumber, secondNumber, operation, out operationSuccess);
             }
             while  (!operationSuccess) ;
 
             Console.ReadKey();
         }
 
-        static void doCalculation(double x, double y, string symbol, out bool check)
+        static void DoCalculation(double x, double y, string symbol, out bool check)
         {
             check = true;
             switch (symbol)
@@ -61,16 +61,27 @@ namespace TMS.Net07.Homework.ConverterCalculator.Medium
                     Console.WriteLine($"Result: {x * y}");
                     break;
                 case "/":
+                    if (y==0)
+                    {
+                        Console.WriteLine("Incorrect input, division by zero!");
+                        check = false;
+                        break;
+                    }
                     Console.WriteLine($"Result: {x / y}");
                     break;
                 case "%":
+                    if (y==0)
+                    {
+                        Console.WriteLine("Incorrect input, division by zero!");
+                        check = false;
+                        break;
+                    }
                     Console.WriteLine($"Result: {x % y}");
                     break;
                 default:
                     check = false;
-                    Console.WriteLine("Incorrect operation sighn input, try again!");
+                    Console.WriteLine("Incorrect operation sign input, try again!");
                     break;
-
             }
         }
     }
