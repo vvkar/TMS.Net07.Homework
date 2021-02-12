@@ -10,9 +10,19 @@ namespace TMS.Net07.Homework.FactorialFibonacci.Hard
     {
         static void Main(string[] args)
         {
-            int n = int.Parse(Console.ReadLine());
+            int n;
+            do
+            {
+                Console.Write("Input the number: ");
+                n = int.Parse(Console.ReadLine());
+                if (n < 0)
+                {
+                    Console.WriteLine("Input should be nonnegative!");
+                }
+            }
+            while (n < 0);
 
-            Console.WriteLine(Fibonacci(n));
+            Console.WriteLine($"The {n} Fibonacci number is "+Fibonacci(n));
 
             Console.ReadKey();
         }
