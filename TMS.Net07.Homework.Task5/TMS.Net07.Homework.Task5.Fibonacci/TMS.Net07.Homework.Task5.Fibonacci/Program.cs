@@ -10,13 +10,23 @@ namespace TMS.Net07.Homework.Task5.Fibonacci
     {
         static void Main(string[] args)
         {
-            int n = int.Parse(Console.ReadLine());
+            int n;
+            do
+            {
+                Console.Write("Input the number: ");
+                n = int.Parse(Console.ReadLine());
+                if (n < 0)
+                {
+                    Console.WriteLine("Input should be nonnegative!");
+                }
+            }
+            while (n < 0);
 
             var buffer = new int[n+1];
 
             var res = Fibonacci(n, buffer); //calculating the N-th Fibonacci element
 
-            Console.WriteLine(res);            
+            Console.WriteLine($"The {n} Fibonacci number equals {res}");            
 
             Console.ReadKey();
 
